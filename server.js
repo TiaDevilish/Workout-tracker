@@ -15,7 +15,19 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+
 //api
+app.get("/api/workouts", (req, res) => {
+    db.Workout.find({})
+    .then(data => {
+        console.log(data);
+        res.json(data);
+    });
+});
+
+
+
+//html
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname,"./public/index.html"))
 });
