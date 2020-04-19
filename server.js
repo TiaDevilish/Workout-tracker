@@ -25,6 +25,22 @@ app.get("/api/workouts", (req, res) => {
     });
 });
 
+app.put("/api/workouts", (req, res) => {
+    db.Workout.find({_id: req.params.id}).then(data => {
+        console.log(data[0].exercises)
+        var exercises = data[0].exercises;
+        exercises.push(req.body);
+        db.Workout.findOneAndUpdate({_id:req.params.id}, {exercises:exercises}, (data) => {
+            res.json(data);
+        });
+    });
+});
+
+app.post("/api/workouts", ({body}, res) => {
+    db.Workout.create(body)
+    .then();
+});
+
 
 
 //html
