@@ -52,6 +52,31 @@ workoutSchema.virtual("totalDuration").get(function(){
     },0);
 });
 
+workoutSchema.virtual("totalWeight").get(function() {
+    return this.exercises.reduce((total, exercise) => {
+      return total + exercise.weight;
+    }, 0);
+  });
+  
+  workoutSchema.virtual("totalSets").get(function() {
+    return this.exercises.reduce((total, exercise) => {
+      return total + exercise.sets;
+    }, 0);
+  });
+  
+  
+  workoutSchema.virtual("totalReps").get(function() {
+    return this.exercises.reduce((total, exercise) => {
+      return total + exercise.reps;
+    }, 0);
+  });
+  
+  workoutSchema.virtual("totalDistance").get(function() {
+    return this.exercises.reduce((total, exercise) => {
+      return total + exercise.distance;
+    }, 0);
+  });
+
 const Workout = mongoose.model("Workout", workoutSchema);
 
 module.exports = Workout;
